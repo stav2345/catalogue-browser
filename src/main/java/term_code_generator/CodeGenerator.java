@@ -351,9 +351,11 @@ public class CodeGenerator {
 			con.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			LOGGER.error("Cannot generate new code", e);
+			e.printStackTrace();
 		}
+		
+		LOGGER.info("The code of the new term " + alphaNumCode + " given the code mask " + codeMask);
 		return alphaNumCode;
 
 	}

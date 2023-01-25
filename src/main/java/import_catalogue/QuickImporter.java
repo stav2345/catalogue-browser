@@ -66,6 +66,7 @@ public abstract class QuickImporter {
 				try {
 					current = (ResultDataSet) fetched.clone();
 				} catch (CloneNotSupportedException e1) {
+					LOGGER.error("Error during clone ", e1);
 					e1.printStackTrace();
 					return;
 				}
@@ -97,20 +98,21 @@ public abstract class QuickImporter {
 						}
 					}
 				} catch (InterruptedException e) {
-					e.printStackTrace();
 					LOGGER.error("Cannot import sheet", e);
+					e.printStackTrace();
 				}
 				// solve memory leak
 				current.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			LOGGER.error("Cannot import sheet", e);
+			e.printStackTrace();
 		} finally {
 			try {
 				fetched.close();
 			} catch (Exception e) {
-				// TODO: handle exception
+				LOGGER.error("Error during close", e);
+				e.printStackTrace();
 			}
 		}
 

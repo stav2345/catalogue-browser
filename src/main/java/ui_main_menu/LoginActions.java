@@ -16,6 +16,9 @@ import progress_bar.FormProgressBar;
 import ui_main_panel.ShellLocker;
 import utilities.GlobalUtil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * the class refresh all the methods while the user log in/out from the
  * DCF/Openapi
@@ -24,6 +27,8 @@ import utilities.GlobalUtil;
  *
  */
 public class LoginActions {
+	
+	private static final Logger LOGGER = LogManager.getLogger(LoginActions.class);
 
 	/**
 	 * Start all the processes after the user is logged in
@@ -92,6 +97,8 @@ public class LoginActions {
 								title = CBMessages.getString("FormDCFLogin.ErrorTitle");
 								msg = CBMessages.getString("FormDCFLogin.WrongCredentialMessage");
 								GlobalUtil.showDialog(shell, title, msg, SWT.ICON_ERROR);
+								
+								LOGGER.error("Error ", e);
 								e.printStackTrace();
 							}
 

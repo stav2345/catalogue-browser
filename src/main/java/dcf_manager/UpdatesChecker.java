@@ -48,8 +48,8 @@ public class UpdatesChecker extends Thread {
 		}
 		
 		catch ( Exception e ) {
-			e.printStackTrace();
 			LOGGER.error("Cannot get catalogues list", e);
+			e.printStackTrace();
 		}
 	}
 }
